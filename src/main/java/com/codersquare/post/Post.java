@@ -1,5 +1,6 @@
 package com.codersquare.post;
 
+import com.codersquare.request.CreatePostRequest;
 import com.codersquare.user.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -37,4 +38,21 @@ public class Post {
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    public Post(User user, String title, String category, String url) {
+        this.user = user;
+        this.title = title;
+        this.category = category;
+        this.url = url;
+        this.points = 0;
+        this.createdAt = LocalDateTime.now();
+    }
+
+    public Post(CreatePostRequest request) {
+        this.title = request.title();
+        this.category = request.category();
+        this.url = request.url();
+        this.points = 0;
+        this.createdAt = LocalDateTime.now();
+    }
 }
