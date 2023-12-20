@@ -4,6 +4,8 @@
 
 Codersquare is a social web app designed for sharing learning resources in a hackernews-style experience. It allows users to post links to articles, videos, channels, or other public resources on the web, and enables other users to vote and comment on those resources.
 
+![Screenshot](/../main/docs/ui%20designs/1%20home%20page.png)
+
 ## Table of Contents
 
 - [Storage](#storage)
