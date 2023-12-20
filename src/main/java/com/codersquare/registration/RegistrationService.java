@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.regex.Pattern;
+
 @Service
 @AllArgsConstructor
 public class RegistrationService {
@@ -17,6 +19,7 @@ public class RegistrationService {
 
     public ResponseEntity<RegistrationResponse> signUp(RegistrationRequest request) {
         try {
+            validateEmail(request.email());
             checkIfUsernameOrEmailExists(request.email(), request.userName());
             User user = new User(request);
             userRepository.save(user);
@@ -36,4 +39,18 @@ public class RegistrationService {
             throw new UserAlreadyExistsException("User with user name " + username + " already exists\"");
         }
     }
+
+    private void validateEmail(String email) {
+        // Define a regular expression for a basic email format
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+
+        // Compile the regex pattern
+        Pattern pattern = Pattern.compile(emailRegex);
+
+        // Validate the email against the pattern
+        if (!pattern.matcher(email).matches()) {
+            throw new IllegalArgumentException("Invalid email format");
+        }
+    }
+
 }
