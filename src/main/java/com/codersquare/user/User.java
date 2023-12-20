@@ -1,9 +1,8 @@
 package com.codersquare.user;
 
+import com.codersquare.request.RegistrationRequest;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
-
 import java.time.LocalDateTime;
 
 
@@ -27,7 +26,7 @@ public class User {
     private String lastName;
 
     @Column(name = "username", nullable = false, unique = true)
-    private String username;
+    private String userName;
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -39,4 +38,22 @@ public class User {
     private LocalDateTime createdAt;
 
 
+
+    public User(RegistrationRequest request) {
+        this.firstName = request.firstName();
+        this.lastName = request.lastName();
+        this.userName = request.userName();
+        this.password = request.password();
+        this.email = request.email();
+        this.createdAt = LocalDateTime.now();
+    }
+
+    public User(String firstName, String lastName, String userName, String password, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.createdAt = LocalDateTime.now();
+    }
 }
