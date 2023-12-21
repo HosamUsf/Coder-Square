@@ -74,6 +74,20 @@ Codersquare utilizes a basic client/server architecture with a Spring Boot serve
 | FOREIGN KEY (user_id) REFERENCES users (user_id) |
 | FOREIGN KEY (post_id) REFERENCES posts (post_id) |
 
+#### Votes:
+| Column      | Type        |
+|-------------|-------------|
+| vote_id     | BIGSERIAL    |
+| user_id     | BIGINT      |
+| post_id     | BIGINT      |
+| comment_id  | BIGINT      |
+| vote_type   | VARCHAR(50) NOT NULL |
+| created_at  | TIMESTAMP DEFAULT CURRENT_TIMESTAMP |
+| FOREIGN KEY (user_id) REFERENCES users (user_id) |
+| FOREIGN KEY (post_id) REFERENCES posts (post_id) |
+| FOREIGN KEY (comment_id) REFERENCES comments (comment_id) |
+
+
 ## Server
 
 A Spring Boot server is implemented to handle the backend functionalities. Authentication is based on JWT, with passwords encrypted and stored in the database. OAuth integration with platforms like Google, Facebook, and potentially Github is planned.
