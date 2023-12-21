@@ -133,6 +133,12 @@ A Spring Boot server is implemented to handle the backend functionalities. Authe
 ```
 /users/{username} [GET]        // Get user profile information
 ```
+**Votes:**
+
+```
+/api/v1/vote [PUT] // Vote on a post or comment
+```
+
 
 ## Clients
 
@@ -168,7 +174,11 @@ Comments are sorted reverse-chronologically, and users can delete their own comm
    - Users have profiles that can be customized. Retrieve user profile information via `/users/{username}`.
 
 4. **Voting:**
-   - Users can upvote or downvote posts and comments.
+   - Users can upvote or downvote posts and comments. The vote functionality is implemented using the `/api/v1/vote` endpoint. The details can be found in the request mapping for this endpoint.
+
+...
+
+
 
 ## Market
 
