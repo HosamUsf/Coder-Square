@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class VoteService {
 
+    public static final String DOWNVOTE = "downvote";
+    public static final String UPVOTE = "upvote";
     private final VoteRepository voteRepository;
     private final UserRepository userRepository;
     private final PostRepository postRepository;
@@ -81,9 +83,9 @@ public class VoteService {
 
         // Process the vote based on its existence
         if (vote == null) {
-            if ("upvote".equals(voteType)) {
+            if (UPVOTE.equals(voteType)) {
                 post.setPoints(post.getPoints() + 1);
-            } else if ("downvote".equals(voteType)) {
+            } else if (DOWNVOTE.equals(voteType)) {
                 post.setPoints(post.getPoints() - 1);
             }
             // Create a new vote entity
@@ -92,12 +94,12 @@ public class VoteService {
             // Check for duplicate vote type
             if (vote.getVoteType().equals(voteType)) {
                 throw new UserAlreadyVoteException("User has already voted on this post");
-            } else if (vote.getVoteType().equals("downvote") && "upvote".equals(voteType)) {
+            } else if (vote.getVoteType().equals(DOWNVOTE) && UPVOTE.equals(voteType)) {
                 post.setPoints(post.getPoints() + 1);
-                vote.setVoteType("upvote");
-            } else if (vote.getVoteType().equals("upvote") && "downvote".equals(voteType)) {
+                vote.setVoteType(UPVOTE);
+            } else if (vote.getVoteType().equals(UPVOTE) && DOWNVOTE.equals(voteType)) {
                 post.setPoints(post.getPoints() - 1);
-                vote.setVoteType("downvote");
+                vote.setVoteType(DOWNVOTE);
             }
         }
 
