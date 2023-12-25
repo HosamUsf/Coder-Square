@@ -18,7 +18,7 @@ public class UserDTOMapper implements Function<User, UserDTO> {
                 user.getFirstName() + " " + user.getLastName(),
                 user.getUserName(),
                 user.getEmail(),
-                "http://localhost:3001/api/v1/posts/" + user.getUserId(),
+                "http://localhost:3001/api/v1/post/" + user.getUserId(),
                 String.valueOf(user.getPosts().size()),
                 user.getCreatedAt()
         );

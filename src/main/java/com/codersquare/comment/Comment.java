@@ -38,4 +38,9 @@ public class Comment {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    public Comment(String text) {
+        this.text = text;
+        this.points = 0;
+        this.createdAt = LocalDateTime.now();
+    }
 }

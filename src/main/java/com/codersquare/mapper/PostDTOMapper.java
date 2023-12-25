@@ -6,11 +6,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
 public class PostDTOMapper implements Function<Post, PostDTO> {
     private final UserDTOMapper userDTOMapper;
+    private final CommentDTOMapper commentDTOMapper;
 
     @Override
     public PostDTO apply(Post post) {
@@ -23,7 +25,8 @@ public class PostDTOMapper implements Function<Post, PostDTO> {
                 post.getCreatedAt(),
                 String.valueOf(post.getComments().size()),
                 userDTOMapper.apply(post.getUser()),
-                null
+                post.getComments().stream().map(commentDTOMapper::apply).collect(Collectors.toList())
+
         );
     }
 }
