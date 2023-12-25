@@ -1,14 +1,17 @@
 package com.codersquare.post;
 
 import com.codersquare.exceptions.InvalidUrlException;
+import com.codersquare.mapper.PostDTOMapper;
 import com.codersquare.request.CreatePostRequest;
 import com.codersquare.response.CreatePostResponse;
 import com.codersquare.response.DeleteEntityResponse;
+import com.codersquare.response.PostDTO;
 import com.codersquare.user.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,12 +19,14 @@ import org.springframework.stereotype.Service;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class PostService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
+    private final PostDTOMapper postDTOMapper;
 
     /**
      * Retrieves a page of posts with pagination.
@@ -29,8 +34,9 @@ public class PostService {
      * @param page Page number
      * @return Page of posts
      */
-    public Page<Post> findAll(int page) {
-        return postRepository.findAll(PageRequest.of(page, 20));
+    public Page<PostDTO> findAll(int page) {
+        return postRepository.findAll(PageRequest.of(page, 20,
+                Sort.by("createdAt").descending())).map(postDTOMapper);
     }
 
     /**
@@ -38,8 +44,8 @@ public class PostService {
      *
      * @return List of all posts
      */
-    public List<Post> findAll() {
-        return postRepository.findAll();
+    public List<PostDTO> findAll() {
+        return postRepository.findAll().stream().map(postDTOMapper).collect(Collectors.toList());
     }
 
     /**
@@ -48,8 +54,8 @@ public class PostService {
      * @param PostId Post ID
      * @return List of posts associated with the Post ID
      */
-    public Post findPosById(Long PostId) {
-        return postRepository.findById(PostId)
+    public PostDTO findPosById(Long PostId) {
+        return postRepository.findById(PostId).map(postDTOMapper)
                 .orElseThrow(() -> new EntityNotFoundException("Post with Id " + PostId + " Not Found"));
     }
 
@@ -59,8 +65,8 @@ public class PostService {
      * @param userId User ID
      * @return List of posts associated with the user ID
      */
-    public List<Post> findPostWithUserId(Long userId) {
-        return postRepository.findAllByUserId(userId);
+    public List<PostDTO> findPostWithUserId(Long userId) {
+        return postRepository.findAllByUserId(userId).stream().map(postDTOMapper).collect(Collectors.toList());
     }
 
     /**

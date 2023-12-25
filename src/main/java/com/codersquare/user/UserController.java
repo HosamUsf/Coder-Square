@@ -1,7 +1,7 @@
 package com.codersquare.user;
 
 import com.codersquare.response.DeleteEntityResponse;
-import com.codersquare.response.UserDto;
+import com.codersquare.response.UserDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +15,13 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/users")
-    public List<UserDto> getAllUsers() {
+    public List<UserDTO> getAllUsers() {
         return userService.getAllUsers();
     }
 
+
     @GetMapping("/users/{userId}")
-    public UserDto getAll(@PathVariable Long userId) {
+    public UserDTO getAll(@PathVariable Long userId) {
         return userService.getUserById(userId);
     }
 

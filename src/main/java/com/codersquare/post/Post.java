@@ -1,11 +1,14 @@
 package com.codersquare.post;
 
+import com.codersquare.comment.Comment;
 import com.codersquare.request.CreatePostRequest;
 import com.codersquare.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,7 +23,7 @@ public class Post {
     @Column(name = "post_id")
     private long postId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
@@ -35,6 +38,9 @@ public class Post {
 
     @Column(name = "points", nullable = false)
     private int points = 0;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

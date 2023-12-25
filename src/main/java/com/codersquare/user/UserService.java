@@ -4,7 +4,7 @@ import com.codersquare.mapper.UserDTOMapper;
 import com.codersquare.post.Post;
 import com.codersquare.post.PostRepository;
 import com.codersquare.response.DeleteEntityResponse;
-import com.codersquare.response.UserDto;
+import com.codersquare.response.UserDTO;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -21,13 +21,14 @@ public class UserService {
     private final UserDTOMapper userDTOMapper;
 
 
-    public List<UserDto> getAllUsers() {
+    public List<UserDTO> getAllUsers() {
         return userRepository.findAll().stream()
                 .map(userDTOMapper).toList();
 
     }
 
-    public UserDto getUserById(Long id) {
+
+    public UserDTO getUserById(Long id) {
         return userRepository.findById(id)
                 .map(userDTOMapper)
                 .orElseThrow(() -> new EntityNotFoundException("User Doesn't Exist"));

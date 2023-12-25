@@ -1,4 +1,17 @@
 package com.codersquare.response;
 
-public record PostDTO() {
+import java.time.LocalDateTime;
+import java.util.List;
+
+public record PostDTO(
+        long postId,
+        String title,
+        String category,
+        String url,
+        int points,
+        LocalDateTime createdAt,
+        String Comments_number,
+        UserDTO user,
+        List<CommentDTO> comments
+) {
 }
