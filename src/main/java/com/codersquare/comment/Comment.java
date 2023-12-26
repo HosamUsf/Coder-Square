@@ -25,9 +25,10 @@ public class Comment {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id", nullable = false)
     private Post post;
+
 
     @Column(name = "text", nullable = false)
     private String text;
@@ -37,7 +38,7 @@ public class Comment {
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
-    // test
+
     public Comment(String text) {
         this.text = text;
         this.points = 0;
