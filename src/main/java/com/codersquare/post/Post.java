@@ -39,7 +39,7 @@ public class Post {
     @Column(name = "points", nullable = false)
     private int points = 0;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Comment> comments = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false, updatable = false)

@@ -1,5 +1,7 @@
 package com.codersquare.post;
 
+import com.codersquare.comment.CommenRepository;
+import com.codersquare.comment.Comment;
 import com.codersquare.exceptions.InvalidUrlException;
 import com.codersquare.mapper.PostDTOMapper;
 import com.codersquare.request.CreatePostRequest;
@@ -7,7 +9,10 @@ import com.codersquare.response.CreatePostResponse;
 import com.codersquare.response.DeleteEntityResponse;
 import com.codersquare.response.PostDTO;
 import com.codersquare.user.UserRepository;
+import com.codersquare.votes.Vote;
+import com.codersquare.votes.VoteRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,12 +26,18 @@ import java.net.URL;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Service class for managing posts.
+ */
+
 @Service
 @AllArgsConstructor
 public class PostService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
     private final PostDTOMapper postDTOMapper;
+    private final VoteRepository voteRepository;
+
 
     /**
      * Retrieves a page of posts with pagination.
@@ -86,7 +97,15 @@ public class PostService {
             );
         } catch (InvalidUrlException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(CreatePostResponse.error(
-                    e.getMessage())
+                    e.getMessage(), new CreatePostResponse.ErrorData("INVALID_URL_FORMAT", e.getMessage()))
+            );
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(CreatePostResponse.error(
+                    e.getMessage(), new CreatePostResponse.ErrorData("ENTITY_NOT_FOUND", e.getMessage()))
+            );
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(CreatePostResponse.error(
+                    e.getMessage(), new CreatePostResponse.ErrorData("INTERNAL_SERVER_ERROR", e.getMessage()))
             );
         }
     }
@@ -97,9 +116,20 @@ public class PostService {
      * @param postId Post ID to be deleted
      * @return ResponseEntity with the status and response body
      */
+
+    // TODO: When adding authentication, check whether the user is the owner of the post.
+    @Transactional
     public ResponseEntity<DeleteEntityResponse> deletePost(Long postId) {
         try {
             checkIfPostExists(postId);
+
+            Post post = postRepository.findById(postId).orElse(null);
+
+            if (post != null) {
+                List<Vote> votes = voteRepository.findAllByPostId(post.getPostId());
+                voteRepository.deleteAll(votes);
+            }
+
             postRepository.deleteById(postId);
             return ResponseEntity.status(HttpStatus.OK).
                     body(DeleteEntityResponse.success("Post", "Id", postId.toString()));
@@ -127,16 +157,29 @@ public class PostService {
     }
 
     /**
-     * Checks if a post with the given post ID exists.
+     * Checks if a user exists.
      *
-     * @param postId Post ID to check
-     * @throws EntityNotFoundException if the post does not exist
+     * @param userId The ID of the user.
+     * @throws EntityNotFoundException if the user does not exist.
      */
-    private void checkIfPostExists(Long postId) {
-        if (!postRepository.existsByPostId(postId)) {
-            throw new EntityNotFoundException();
+    private void checkIfUserExists(long userId) {
+        if (!userRepository.existsById(userId)) {
+            throw new EntityNotFoundException("User with Id " + userId + " Not Found ");
         }
     }
 
-
+    /**
+     * Checks if a post exists.
+     *
+     * @param postId The ID of the post.
+     * @throws EntityNotFoundException if the post does not exist.
+     */
+    private void checkIfPostExists(long postId) {
+        if (!postRepository.existsByPostId(postId)) {
+            throw new EntityNotFoundException("Post with Id " + postId + " Not Found ");
+        }
+    }
 }
+
+
+
