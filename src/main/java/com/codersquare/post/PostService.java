@@ -1,7 +1,5 @@
 package com.codersquare.post;
 
-import com.codersquare.comment.CommenRepository;
-import com.codersquare.comment.Comment;
 import com.codersquare.exceptions.InvalidUrlException;
 import com.codersquare.mapper.PostDTOMapper;
 import com.codersquare.request.CreatePostRequest;
@@ -9,8 +7,6 @@ import com.codersquare.response.CreatePostResponse;
 import com.codersquare.response.DeleteEntityResponse;
 import com.codersquare.response.PostDTO;
 import com.codersquare.user.UserRepository;
-import com.codersquare.votes.Vote;
-import com.codersquare.votes.VoteRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -24,7 +20,6 @@ import org.springframework.stereotype.Service;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Service class for managing posts.
@@ -36,7 +31,8 @@ public class PostService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
     private final PostDTOMapper postDTOMapper;
-    private final VoteRepository voteRepository;
+
+
 
 
     /**
@@ -56,18 +52,18 @@ public class PostService {
      * @return List of all posts
      */
     public List<PostDTO> findAll() {
-        return postRepository.findAll().stream().map(postDTOMapper).collect(Collectors.toList());
+        return postRepository.findAll().stream().map(postDTOMapper).toList();
     }
 
     /**
      * Retrieves  post  with a specific ID.
      *
-     * @param PostId Post ID
+     * @param postId Post ID
      * @return List of posts associated with the Post ID
      */
-    public PostDTO findPosById(Long PostId) {
-        return postRepository.findById(PostId).map(postDTOMapper)
-                .orElseThrow(() -> new EntityNotFoundException("Post with Id " + PostId + " Not Found"));
+    public PostDTO findPosById(Long postId) {
+        return postRepository.findById(postId).map(postDTOMapper)
+                .orElseThrow(() -> new EntityNotFoundException("Post with Id " + postId + " Not Found"));
     }
 
     /**
@@ -77,7 +73,7 @@ public class PostService {
      * @return List of posts associated with the user ID
      */
     public List<PostDTO> findPostWithUserName(String userId) {
-        return postRepository.findAllByUserId(userId).stream().map(postDTOMapper).collect(Collectors.toList());
+        return postRepository.findAllByUserId(userId).stream().map(postDTOMapper).toList();
     }
 
     /**
@@ -123,14 +119,6 @@ public class PostService {
     public ResponseEntity<DeleteEntityResponse> deletePost(Long postId) {
         try {
             checkIfPostExists(postId);
-
-            Post post = postRepository.findById(postId).orElse(null);
-
-            if (post != null) {
-                List<Vote> votes = voteRepository.findAllByPostId(post.getPostId());
-                voteRepository.deleteAll(votes);
-            }
-
             postRepository.deleteById(postId);
             return ResponseEntity.status(HttpStatus.OK).
                     body(DeleteEntityResponse.success("Post", "Id", postId.toString()));

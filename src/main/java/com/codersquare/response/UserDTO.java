@@ -15,7 +15,7 @@ public record UserDTO(
 ) {
 
     public UserDTO {
-        posts_url=  "http://localhost:3001/api/v1/users/" + userName+"/posts";
-        likes_url =   "http://localhost:3001/api/v1/users/" + userName+"/likes";
+        posts_url=  "http://localhost:3001/api/v1/users/"+userName+"/posts";
+        likes_url =   "http://localhost:3001/api/v1/users/"+userName+"/likes";
     }
 }

@@ -34,5 +34,7 @@ public interface PostRepository extends JpaRepository<Post, Long>, JpaSpecificat
     @Query("select p from Post p  where p.points > 1")
     Page<Post> findHotPosts(Pageable pagaple);
 
+    List<Post> findByUser_UserName(String userName);
+
 
 }

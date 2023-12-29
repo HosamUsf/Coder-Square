@@ -1,5 +1,6 @@
 package com.codersquare.user;
 
+import com.codersquare.likes.LikeService;
 import com.codersquare.post.PostService;
 import com.codersquare.response.DeleteEntityResponse;
 import com.codersquare.response.PostDTO;
@@ -16,6 +17,7 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
     private final PostService postService;
+    private final LikeService likeService;
 
     @GetMapping("/users")
     public List<UserDTO> getAllUsers() {
@@ -25,6 +27,12 @@ public class UserController {
     @GetMapping("/users/{userName}/posts")
     public List<PostDTO> findAllByUserName(@PathVariable String userName) {
         return postService.findPostWithUserName(userName);
+    }
+
+
+    @GetMapping("/users/{userName}/likes")
+    public List<PostDTO> findAllUserLikes(@PathVariable String userName) {
+        return likeService.getUserLikes(userName);
     }
 
 

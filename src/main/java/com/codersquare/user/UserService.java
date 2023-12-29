@@ -1,8 +1,7 @@
 package com.codersquare.user;
 
+
 import com.codersquare.mapper.UserDTOMapper;
-import com.codersquare.post.Post;
-import com.codersquare.post.PostRepository;
 import com.codersquare.response.DeleteEntityResponse;
 import com.codersquare.response.UserDTO;
 import jakarta.persistence.EntityNotFoundException;
@@ -11,7 +10,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.List;
 
 /**
@@ -19,9 +19,14 @@ import java.util.List;
  */
 @Service
 @AllArgsConstructor
+@Transactional
 public class UserService {
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+
     private final UserRepository userRepository;
     private final UserDTOMapper userDTOMapper;
+
+
 
     /**
      * Retrieves a list of all users.
@@ -51,19 +56,25 @@ public class UserService {
      * @param userName Username of the user to be deleted
      * @return ResponseEntity with the status and response body
      */
-    @Transactional
     public ResponseEntity<DeleteEntityResponse> deleteUser(String userName) {
         try {
+            logger.info("Deleting user with username: {}", userName);
+
             checkIfUsernameExists(userName);
 
-            userRepository.deleteUserByUserName(userName);
-            return ResponseEntity.status(HttpStatus.OK).
-                    body(DeleteEntityResponse.success("User", "User Name", userName));
+            userRepository.deleteAllByUserName(userName);
+
+            logger.info("Deleted user with username: {}", userName);
+
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(DeleteEntityResponse.success("User", "User Name", userName));
         } catch (EntityNotFoundException e) {
+            logger.error("Error deleting user with username: {}", userName, e);
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(DeleteEntityResponse.error("User", "User name", userName));
         }
     }
+
 
     /**
      * Checks if a user exists.
