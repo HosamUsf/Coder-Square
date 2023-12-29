@@ -11,7 +11,7 @@ public record PostDTO(
         int points,
         LocalDateTime createdAt,
         String Comments_number,
-        UserDTO user,
+        UserDTO owner,
         List<CommentDTO> comments
 ) {
 }

@@ -76,7 +76,7 @@ public class PostService {
      * @param userId User ID
      * @return List of posts associated with the user ID
      */
-    public List<PostDTO> findPostWithUserId(Long userId) {
+    public List<PostDTO> findPostWithUserName(String userId) {
         return postRepository.findAllByUserId(userId).stream().map(postDTOMapper).collect(Collectors.toList());
     }
 
@@ -89,6 +89,7 @@ public class PostService {
     public ResponseEntity<CreatePostResponse> createPost(CreatePostRequest request) {
         try {
             validateUrl(request.url());
+            checkIfUserExists(request.userId());
             Post post = new Post(request);
             post.setUser(userRepository.getReferenceById((long) request.userId()));
             postRepository.save(post);

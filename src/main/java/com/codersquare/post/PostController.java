@@ -47,12 +47,6 @@ public class PostController {
     }
 
 
-    //TODO:make it user name
-    @GetMapping("/post/{userId}")
-    public List<PostDTO> findAllByUserId(@PathVariable Long userId) {
-        return postService.findPostWithUserId(userId);
-    }
-
     @GetMapping("/posts/{postId}")
     public PostDTO findAllByPostId(@PathVariable Long postId) {
         return postService.findPosById(postId);

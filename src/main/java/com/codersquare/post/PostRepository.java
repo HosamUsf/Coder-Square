@@ -13,8 +13,8 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Long>, JpaSpecificationExecutor<Post> {
 
 
-    @Query("select p from Post p where p.user.userId = :userId")
-    List<Post> findAllByUserId(Long userId);
+    @Query("select p from Post p where p.user.userName = :userName")
+    List<Post> findAllByUserId(String userName);
 
     boolean existsByPostId(Long postId);
 
