@@ -5,17 +5,17 @@ import java.time.LocalDateTime;
 public record UserDTO(
         long userId,
         String name,
-        String userName,
+        String username,
         String email,
-        String posts_url ,
+        String postsUrl ,
         String number_of_post,
-        String likes_url ,
+        String likesUrl ,
         LocalDateTime createdAt
 
 ) {
 
     public UserDTO {
-        posts_url=  "http://localhost:3001/api/v1/users/"+userName+"/posts";
-        likes_url =   "http://localhost:3001/api/v1/users/"+userName+"/likes";
+        postsUrl=  "http://localhost:3001/api/v1/users/"+username+"/posts";
+        likesUrl =   "http://localhost:3001/api/v1/users/"+username+"/likes";
     }
 }

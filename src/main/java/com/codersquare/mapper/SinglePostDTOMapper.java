@@ -1,7 +1,7 @@
 package com.codersquare.mapper;
 
 import com.codersquare.post.Post;
-import com.codersquare.response.PostsDTO;
+import com.codersquare.response.SinglePostDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,13 +9,13 @@ import java.util.function.Function;
 
 @AllArgsConstructor
 @Service
-public class PostDTOMapper implements Function<Post, PostsDTO> {
+public class SinglePostDTOMapper implements Function<Post, SinglePostDTO> {
+
     private final UserDTOMapper userDTOMapper;
-
-
+    private final CommentDTOMapper commentDTOMapper;
     @Override
-    public PostsDTO apply(Post post) {
-        return new PostsDTO(
+    public SinglePostDTO apply(Post post) {
+        return new SinglePostDTO(
                 post.getPostId(),
                 post.getTitle(),
                 post.getCategory(),
@@ -23,7 +23,11 @@ public class PostDTOMapper implements Function<Post, PostsDTO> {
                 post.getPoints(),
                 post.getCreatedAt(),
                 post.getComments().size(),
-                userDTOMapper.apply(post.getUser())
+                userDTOMapper.apply(post.getUser()),
+                post.getComments().stream().map(commentDTOMapper).toList()
+
         );
     }
 }
+
+

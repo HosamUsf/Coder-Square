@@ -4,7 +4,8 @@ package com.codersquare.post;
 import com.codersquare.request.CreatePostRequest;
 import com.codersquare.response.CreatePostResponse;
 import com.codersquare.response.DeleteEntityResponse;
-import com.codersquare.response.PostDTO;
+import com.codersquare.response.PostsDTO;
+import com.codersquare.response.SinglePostDTO;
 import com.codersquare.sort.SortService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -21,8 +22,8 @@ public class PostController {
     private PostService postService;
     private SortService sortService;
 
-    @GetMapping("/post")
-    public Page<PostDTO> getAll(@RequestParam(defaultValue = "" + 0, required = false) int page) {
+    @GetMapping("/posts")
+    public Page<PostsDTO> getAll(@RequestParam(defaultValue = "" + 0, required = false) int page) {
         return postService.findAll(page);
     }
 
@@ -36,8 +37,8 @@ public class PostController {
         };
     }*/
 
-    @GetMapping("/posts")
-    public List<PostDTO> getAll() {
+    @GetMapping("/post")
+    public List<PostsDTO> getAll() {
         return postService.findAll();
     }
 
@@ -48,24 +49,24 @@ public class PostController {
 
 
     @GetMapping("/posts/{postId}")
-    public PostDTO findAllByPostId(@PathVariable Long postId) {
-        return postService.findPosById(postId);
+    public SinglePostDTO findAllByPostId(@PathVariable Long postId) {
+        return postService.findPostById(postId);
     }
 
     @GetMapping("posts/new")
-    public Page<PostDTO> getPostsSortedByRecent(@RequestParam(defaultValue = "" + 0, required = false) int page) {
+    public Page<PostsDTO> getPostsSortedByRecent(@RequestParam(defaultValue = "" + 0, required = false) int page) {
         return sortService.getPostsSortedByRecent(page);
     }
 
     @GetMapping("posts/popular")
-    public Page<PostDTO> getPostsSortedByPopularity(@RequestParam(defaultValue = "" + 0, required = false) int page) {
+    public Page<PostsDTO> getPostsSortedByPopularity(@RequestParam(defaultValue = "" + 0, required = false) int page) {
         return sortService.getPostsSortedByPopularity(page);
     }
 
 
-    @DeleteMapping("/posts/{PostId}")
-    public ResponseEntity<DeleteEntityResponse> deletePost(@PathVariable Long PostId) {
-        return postService.deletePost(PostId);
+    @DeleteMapping("/posts/{postId}")
+    public ResponseEntity<DeleteEntityResponse> deletePost(@PathVariable Long postId) {
+        return postService.deletePost(postId);
     }
 
 }

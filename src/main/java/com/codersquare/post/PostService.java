@@ -2,10 +2,12 @@ package com.codersquare.post;
 
 import com.codersquare.exceptions.InvalidUrlException;
 import com.codersquare.mapper.PostDTOMapper;
+import com.codersquare.mapper.SinglePostDTOMapper;
 import com.codersquare.request.CreatePostRequest;
 import com.codersquare.response.CreatePostResponse;
 import com.codersquare.response.DeleteEntityResponse;
-import com.codersquare.response.PostDTO;
+import com.codersquare.response.PostsDTO;
+import com.codersquare.response.SinglePostDTO;
 import com.codersquare.user.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -31,6 +33,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
     private final PostDTOMapper postDTOMapper;
+    private final SinglePostDTOMapper singlePostDTOMapper;
 
 
 
@@ -41,7 +44,7 @@ public class PostService {
      * @param page Page number
      * @return Page of posts
      */
-    public Page<PostDTO> findAll(int page) {
+    public Page<PostsDTO> findAll(int page) {
         return postRepository.findAll(PageRequest.of(page, 20,
                 Sort.by("createdAt").descending())).map(postDTOMapper);
     }
@@ -51,7 +54,7 @@ public class PostService {
      *
      * @return List of all posts
      */
-    public List<PostDTO> findAll() {
+    public List<PostsDTO> findAll() {
         return postRepository.findAll().stream().map(postDTOMapper).toList();
     }
 
@@ -61,8 +64,8 @@ public class PostService {
      * @param postId Post ID
      * @return List of posts associated with the Post ID
      */
-    public PostDTO findPosById(Long postId) {
-        return postRepository.findById(postId).map(postDTOMapper)
+    public SinglePostDTO findPostById(Long postId) {
+        return postRepository.findById(postId).map(singlePostDTOMapper)
                 .orElseThrow(() -> new EntityNotFoundException("Post with Id " + postId + " Not Found"));
     }
 
@@ -72,7 +75,7 @@ public class PostService {
      * @param userId User ID
      * @return List of posts associated with the user ID
      */
-    public List<PostDTO> findPostWithUserName(String userId) {
+    public List<PostsDTO> findPostsWithUserName(String userId) {
         return postRepository.findAllByUserId(userId).stream().map(postDTOMapper).toList();
     }
 

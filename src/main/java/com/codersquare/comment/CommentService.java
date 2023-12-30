@@ -16,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Service class for managing comments.
@@ -35,7 +34,7 @@ public class CommentService {
      * @return List of CommentDTO representing all comments
      */
     public List<CommentDTO> getAllComment() {
-        return commenRepository.findAll().stream().map(commentDTOMapper).collect(Collectors.toList());
+        return commenRepository.findAll().stream().map(commentDTOMapper).toList();
     }
 
     /**
@@ -98,7 +97,7 @@ public class CommentService {
      */
     private void checkIfCommentExists(long commentId) {
         if (!commenRepository.existsById(commentId)) {
-            throw new EntityNotFoundException("Comment with Id " + commentId + " Not Found ");
+            throw new EntityNotFoundException("Comment with Id " + commentId + " Not Found");
         }
     }
 

@@ -11,3 +11,13 @@ public class CoderSquareApplication {
     }
 
 }
+
+
+/**
+ * TODO : 1 - sorting by hotposts
+ * TODO : 2 - adding search features
+ * TODO : 3 - implementing security
+ * 2
+ *
+*/
+

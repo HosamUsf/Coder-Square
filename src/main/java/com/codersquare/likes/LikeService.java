@@ -4,7 +4,7 @@ import com.codersquare.mapper.PostDTOMapper;
 import com.codersquare.post.PostRepository;
 import com.codersquare.request.LikePostRequest;
 import com.codersquare.response.LikePostResponse;
-import com.codersquare.response.PostDTO;
+import com.codersquare.response.PostsDTO;
 import com.codersquare.user.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -31,7 +31,7 @@ public class LikeService {
 
     @Transactional
 
-    public List<PostDTO> getUserLikes(String userName) {
+    public List<PostsDTO> getUserLikes(String userName) {
         checkIfUserExists(userName);
         return likeRepository.findPostsByUserName(userName).stream().map(postDTOMapper).toList();
     }
@@ -99,7 +99,7 @@ public class LikeService {
      */
     private void checkIfUserExists(long userId) {
         if (!userRepository.existsById(userId)) {
-            throw new EntityNotFoundException("User with Id " + userId + " Not Found ");
+            throw new EntityNotFoundException("User with Id " + userId + " Not Found");
         }
     }
 

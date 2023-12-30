@@ -3,7 +3,7 @@ package com.codersquare.user;
 import com.codersquare.likes.LikeService;
 import com.codersquare.post.PostService;
 import com.codersquare.response.DeleteEntityResponse;
-import com.codersquare.response.PostDTO;
+import com.codersquare.response.PostsDTO;
 import com.codersquare.response.UserDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,13 +25,13 @@ public class UserController {
     }
 
     @GetMapping("/users/{userName}/posts")
-    public List<PostDTO> findAllByUserName(@PathVariable String userName) {
-        return postService.findPostWithUserName(userName);
+    public List<PostsDTO> findAllByUserName(@PathVariable String userName) {
+        return postService.findPostsWithUserName(userName);
     }
 
 
     @GetMapping("/users/{userName}/likes")
-    public List<PostDTO> findAllUserLikes(@PathVariable String userName) {
+    public List<PostsDTO> findAllUserLikes(@PathVariable String userName) {
         return likeService.getUserLikes(userName);
     }
 

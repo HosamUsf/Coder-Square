@@ -10,7 +10,7 @@ import java.util.function.Function;
 @AllArgsConstructor
 @Service
 public class CommentDTOMapper implements Function<Comment, CommentDTO> {
-    private final UserDTOMapper userDTOMapper;
+
 
     @Override
     public CommentDTO apply(Comment comment) {
