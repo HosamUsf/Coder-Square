@@ -13,8 +13,8 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Long>, JpaSpecificationExecutor<Post> {
 
 
-    @Query("select p from Post p where p.user.userName = :userName")
-    List<Post> findAllByUserId(String userName);
+    @Query("select p from Post p where p.user.username = :username")
+    List<Post> findAllByUserId(String username);
 
     boolean existsByPostId(Long postId);
 
@@ -34,7 +34,7 @@ public interface PostRepository extends JpaRepository<Post, Long>, JpaSpecificat
     @Query("select p from Post p  where p.points > 1")
     Page<Post> findHotPosts(Pageable pagaple);
 
-    List<Post> findByUser_UserName(String userName);
+    List<Post> findByUser_Username(String username);
 
 
 }

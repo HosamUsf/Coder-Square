@@ -62,7 +62,7 @@ public class UserService {
 
             checkIfUsernameExists(userName);
 
-            userRepository.deleteAllByUserName(userName);
+            userRepository.deleteAllByUsername(userName);
 
             logger.info("Deleted user with username: {}", userName);
 
@@ -83,7 +83,7 @@ public class UserService {
      * @throws EntityNotFoundException if the user does not exist.
      */
     private void checkIfUsernameExists(String username) {
-        if (!userRepository.existsByUserName(username)) {
+        if (!userRepository.existsByUsername(username)) {
             throw new EntityNotFoundException("User with user name " + username + " Not Found");
         }
     }

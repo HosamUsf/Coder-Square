@@ -20,8 +20,8 @@ public interface VoteRepository extends JpaRepository<Vote, Long> {
     @Query("select v from Vote v where v.post.postId = :postId")
     List<Vote> findAllByPostId(Long postId);
 
-    @Query("select v from Vote v where v.user.userName = :userName")
-    List<Vote> findAllByUserName(String userName);
+    @Query("select v from Vote v where v.user.username = :userName")
+    List<Vote> findAllByUsername(String userName);
 
 
     @Transactional
@@ -30,7 +30,7 @@ public interface VoteRepository extends JpaRepository<Vote, Long> {
 
     @Transactional
     @Modifying
-    void deleteAllByUser_UserName(String userName);
+    void deleteAllByUser_Username(String userName);
 
 
     void deleteAllByPost(Post post);

@@ -19,20 +19,21 @@ public class UserController {
     private final PostService postService;
     private final LikeService likeService;
 
+
     @GetMapping("/users")
     public List<UserDTO> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/users/{userName}/posts")
-    public List<PostsDTO> findAllByUserName(@PathVariable String userName) {
-        return postService.findPostsWithUserName(userName);
+    @GetMapping("/users/{username}/posts")
+    public List<PostsDTO> findAllByUserName(@PathVariable String username) {
+        return postService.findPostsWithUserName(username);
     }
 
 
-    @GetMapping("/users/{userName}/likes")
-    public List<PostsDTO> findAllUserLikes(@PathVariable String userName) {
-        return likeService.getUserLikes(userName);
+    @GetMapping("/users/{username}/likes")
+    public List<PostsDTO> findAllUserLikes(@PathVariable String username) {
+        return likeService.getUserLikes(username);
     }
 
 
@@ -41,9 +42,9 @@ public class UserController {
         return userService.getUserById(userId);
     }
 
-    @DeleteMapping("/users/{userName}")
-    public ResponseEntity<DeleteEntityResponse> deleteUser(@PathVariable String userName) {
-        return userService.deleteUser(userName);
+    @DeleteMapping("/users/{username}")
+    public ResponseEntity<DeleteEntityResponse> deleteUser(@PathVariable String username) {
+        return userService.deleteUser(username);
     }
 
 

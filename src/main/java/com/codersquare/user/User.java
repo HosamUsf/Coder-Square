@@ -30,7 +30,7 @@ public class User {
     @Column(name = "last_name", nullable = false)
     private String lastName;
     @Column(name = "username", nullable = false, unique = true)
-    private String userName;
+    private String username;
     @Column(name = "password", nullable = false)
     private String password;
     @Column(name = "email", nullable = false, unique = true)
@@ -42,18 +42,28 @@ public class User {
     public User(RegistrationRequest request) {
         this.firstName = request.firstName();
         this.lastName = request.lastName();
-        this.userName = request.userName();
+        this.username = request.userName();
         this.password = request.password();
         this.email = request.email();
         this.createdAt = LocalDateTime.now();
     }
 
-    public User(String firstName, String lastName, String userName, String password, String email) {
+    public User(String firstName, String lastName, String username, String password, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.email = email;
         this.createdAt = LocalDateTime.now();
+    }
+    public User(User user) {
+        this.posts = user.getPosts();
+        this.userId = user.getUserId();
+        this.firstName = user.getUsername();
+        this.lastName = user.getLastName();
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.email = user.getEmail();
+        this.createdAt = user.getCreatedAt();
     }
 }

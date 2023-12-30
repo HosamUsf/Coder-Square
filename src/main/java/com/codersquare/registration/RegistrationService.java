@@ -35,7 +35,7 @@ public class RegistrationService {
         if (userRepository.existsByEmail(email)) {
             throw new UserAlreadyExistsException("User with email " + email + " already exists");
         }
-        if (userRepository.existsByUserName(username)) {
+        if (userRepository.existsByUsername(username)) {
             throw new UserAlreadyExistsException("User with user name " + username + " already exists\"");
         }
     }

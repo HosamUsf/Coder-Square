@@ -110,7 +110,7 @@ public class LikeService {
      * @throws EntityNotFoundException if the user does not exist.
      */
     private void checkIfUserExists(String userName) {
-        if (!userRepository.existsByUserName(userName)) {
+        if (!userRepository.existsByUsername(userName)) {
             throw new EntityNotFoundException("User with Id " + userName + " Not Found ");
         }
     }

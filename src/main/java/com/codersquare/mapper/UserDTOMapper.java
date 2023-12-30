@@ -16,11 +16,11 @@ public class UserDTOMapper implements Function<User, UserDTO> {
         return new UserDTO(
                 user.getUserId(),
                 user.getFirstName() + " " + user.getLastName(),
-                user.getUserName(),
+                user.getUsername(),
                 user.getEmail(),
-                "http://localhost:3001/api/v1/users/" + user.getUserName() + "/posts",
+                "http://localhost:3001/api/v1/users/" + user.getUsername() + "/posts",
                 String.valueOf(user.getPosts().size()),
-                "http://localhost:3001/api/v1/users/" + user.getUserName() + "/likes",
+                "http://localhost:3001/api/v1/users/" + user.getUsername() + "/likes",
                 user.getCreatedAt()
         );
     }

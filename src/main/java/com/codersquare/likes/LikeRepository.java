@@ -18,14 +18,14 @@ public interface LikeRepository extends JpaRepository<Like, Long> {
 
     List<Like> findLikeByUser_UserId(long userId);
 
-    @Query("SELECT l.post FROM Like l WHERE l.user.userName = :userName")
-    List<Post> findPostsByUserName(String userName);
+    @Query("SELECT l.post FROM Like l WHERE l.user.username = :username")
+    List<Post> findPostsByUserName(String username);
 
     @Query("SELECT l FROM Like l WHERE l .post.postId = :postId")
     List<Like> findAllLikesBypostId(long postId);
 
-    @Query("SELECT l FROM Like l WHERE l .user.userName = :userName")
-    List<Like> findAllByUserName(String userName);
+    @Query("SELECT l FROM Like l WHERE l .user.username = :username")
+    List<Like> findAllByUsername(String username);
 
 
     @Transactional
@@ -34,7 +34,7 @@ public interface LikeRepository extends JpaRepository<Like, Long> {
 
     @Transactional
     @Modifying
-    void deleteAllByUser_UserName(String userName);
+    void deleteAllByUser_Username(String username);
 
     void deleteAllByPost(Post post);
 
