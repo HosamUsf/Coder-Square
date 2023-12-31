@@ -44,7 +44,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         @Override
         public boolean isAccountNonLocked() {
-            return true;
+            return !isLocked();
         }
 
         @Override
@@ -52,9 +52,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             return true;
         }
 
-        @Override
-        public boolean isEnabled() {
-            return true;
-        }
     }
 }
