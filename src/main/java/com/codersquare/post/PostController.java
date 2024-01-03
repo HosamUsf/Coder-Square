@@ -37,6 +37,11 @@ public class PostController {
         };
     }*/
 
+    @GetMapping("/posts/")
+    public List<PostsDTO> getPostsByCategory(@RequestParam String category) {
+        return postService.getPostsByCategory(category);
+    }
+
     @GetMapping("/post")
     public List<PostsDTO> getAll() {
         return postService.findAll();

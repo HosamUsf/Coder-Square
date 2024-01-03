@@ -36,8 +36,6 @@ public class PostService {
     private final SinglePostDTOMapper singlePostDTOMapper;
 
 
-
-
     /**
      * Retrieves a page of posts with pagination.
      *
@@ -67,6 +65,10 @@ public class PostService {
     public SinglePostDTO findPostById(Long postId) {
         return postRepository.findById(postId).map(singlePostDTOMapper)
                 .orElseThrow(() -> new EntityNotFoundException("Post with Id " + postId + " Not Found"));
+    }
+
+    public List<PostsDTO> getPostsByCategory(String category) {
+        return postRepository.findAllByCategory(category).stream().map(postDTOMapper).toList();
     }
 
     /**

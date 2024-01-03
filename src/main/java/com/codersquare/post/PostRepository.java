@@ -36,5 +36,7 @@ public interface PostRepository extends JpaRepository<Post, Long>, JpaSpecificat
 
     List<Post> findByUser_Username(String username);
 
+    List<Post> findAllByCategory(String category);
+
 
 }
