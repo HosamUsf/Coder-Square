@@ -118,17 +118,14 @@ A Spring Boot server is implemented to handle the backend functionalities. Authe
 /posts/new  [POST]
 /posts/:id  [GET]
 /posts/:id  [DELETE]
-/posts/sort/{criteria} [GET]    // Sort by Recent or popularity (week, month, year, all time)
+/posts/sort/{criteria} [GET]    // Sort by Hot (Default), Recent or popularity (week, month, year, all time)
 /posts/search/{query} [GET]    // Search resources based on a query
-/posts/upvote/{id} [POST]      // Upvote a post
-/posts/downvote/{id} [POST]    // Downvote a post
+
 ```
 
 **Likes:**
 ```
-/likes/new [POST]
-/likes/upvote/{postId} [POST]    // Upvote a post
-/likes/downvote/{postId} [POST]  // Downvote a post
+/likes/new [POST] // like or unlike post using as bookmarks for users
 ```
 
 **Comments:**
@@ -136,18 +133,26 @@ A Spring Boot server is implemented to handle the backend functionalities. Authe
 /comments/new  [POST]
 /comments/list [GET]
 /comments/:id  [DELETE]
-/comments/upvote/{id} [POST]      // Upvote a comment
-/comments/downvote/{id} [POST]    // Downvote a comment
+
 ```
 
 **Users:**
 ```
 /users/{username} [GET]        // Get user profile information
+/users/{username}/posts [GET]        // Get all posts related to single user
+/users/{username}/likes [GET]        // Get all likes related to single user
+
 ```
 **Votes:**
 
 ```
 /api/v1/vote [PUT] // Vote on a post or comment
+
+/posts/upvote/{id} [POST]      // Upvote a post
+/posts/downvote/{id} [POST]    // Downvote a post
+
+/comments/upvote/{id} [POST]      // Upvote a comment
+/comments/downvote/{id} [POST]    // Downvote a comment
 ```
 
 
@@ -157,13 +162,13 @@ The web client, implemented in React.js, serves as the primary interface. It use
 
 ## Hosting
 
-The code is hosted on Github. The web client is hosted on platforms like Firebase or Netlify, and the Spring Boot server is deployed to a (likely shared) VPS.
+The code is hosted on Github. //TODO: deplpy the project to AWS.
 
 ## Experience
 
 ### Post List
 
-The landing page presents a list of links with titles given by posters. Links are scored based on popularity and age, allowing users to browse and navigate. Signed-in users can add comments, upvote posts, and manage their own posts.
+The landing page presents a list of links with titles given by posters. Links are scored based on popularity and age, allowing users to browse and navigate. Signed-in users can add comments, upvote posts or comment,like posts for bookmark, and manage their own posts.
 
 ### Tagging
 
