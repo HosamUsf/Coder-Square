@@ -17,7 +17,7 @@ public class EmailSender {
 
     private final JavaMailSender mailSender;
 
-    @Async
+
     public void sendEmail(String toEmail, String body) {
         try {
             MimeMessage message = mailSender.createMimeMessage();
