@@ -88,6 +88,16 @@ Codersquare utilizes a basic client/server architecture with a Spring Boot serve
 | FOREIGN KEY (post_id) REFERENCES posts (post_id) |
 | FOREIGN KEY (comment_id) REFERENCES comments (comment_id) |
 
+#### Tokens:
+| Column             | Type        |
+|--------------------|-------------|
+| token_id           | BIGSERIAL    |
+| confirmation_token | VARCHAR(255) |
+| created_at         | TIMESTAMP DEFAULT CURRENT_TIMESTAMP |
+| expired_at         | TIMESTAMP   |
+| confirmed_at       | TIMESTAMP   |
+| user_id            | BIGINT      |
+| FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE |
 
 ## Server
 
