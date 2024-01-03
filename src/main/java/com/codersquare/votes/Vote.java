@@ -49,4 +49,9 @@ public class Vote {
         this.voteType = voteType;
         this.createdAt = LocalDateTime.now();
     }
+    public Vote(User user, String voteType) {
+        this.user = user;
+        this.voteType = voteType;
+        this.createdAt = LocalDateTime.now();
+    }
 }

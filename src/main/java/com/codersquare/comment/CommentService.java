@@ -25,7 +25,7 @@ import java.util.List;
 public class CommentService {
     private final UserRepository userRepository;
     private final PostRepository postRepository;
-    private final CommenRepository commenRepository;
+    private final CommentRepository commentRepository;
     private final CommentDTOMapper commentDTOMapper;
 
     /**
@@ -34,7 +34,7 @@ public class CommentService {
      * @return List of CommentDTO representing all comments
      */
     public List<CommentDTO> getAllComment() {
-        return commenRepository.findAll().stream().map(commentDTOMapper).toList();
+        return commentRepository.findAll().stream().map(commentDTOMapper).toList();
     }
 
     /**
@@ -51,7 +51,7 @@ public class CommentService {
             Comment comment = new Comment(request.text());
             comment.setUser(userRepository.getReferenceById((long) request.userId()));
             comment.setPost(postRepository.getReferenceById((long) request.postId()));
-            commenRepository.save(comment);
+            commentRepository.save(comment);
             return ResponseEntity.status(HttpStatus.CREATED).body(CreateCommentResponse.success(
                     "Comment Created successfully", String.valueOf(request.userId()), String.valueOf(request.postId()), String.valueOf(comment.getCommentId())));
         } catch (EntityNotFoundException e) {
@@ -78,7 +78,7 @@ public class CommentService {
     public ResponseEntity<DeleteEntityResponse> deleteComment(Long commentId) {
         try {
             checkIfCommentExists(commentId);
-            commenRepository.deleteById(commentId);
+            commentRepository.deleteById(commentId);
             return ResponseEntity.status(HttpStatus.OK).
                     body(DeleteEntityResponse.success("Comment", "Id", "" + commentId));
         } catch (EntityNotFoundException e) {
@@ -96,7 +96,7 @@ public class CommentService {
      * @throws EntityNotFoundException if the post does not exist.
      */
     private void checkIfCommentExists(long commentId) {
-        if (!commenRepository.existsById(commentId)) {
+        if (!commentRepository.existsById(commentId)) {
             throw new EntityNotFoundException("Comment with Id " + commentId + " Not Found");
         }
     }

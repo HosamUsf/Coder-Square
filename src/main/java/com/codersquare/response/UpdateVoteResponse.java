@@ -10,7 +10,7 @@ public record UpdateVoteResponse(
 
     public record VoteData(
             String userId,
-            String postId,
+            String entityId,
             String voteId
     ) {
 
