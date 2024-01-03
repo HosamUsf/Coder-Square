@@ -78,12 +78,12 @@ Codersquare utilizes a basic client/server architecture with a Spring Boot serve
 #### Votes:
 | Column      | Type        |
 |-------------|-------------|
-| vote_id     | BIGSERIAL    |
+| vote_id     | BIGSERIAL   |
 | user_id     | BIGINT      |
 | post_id     | BIGINT      |
 | comment_id  | BIGINT      |
-| vote_type   | VARCHAR(50) NOT NULL |
-| created_at  | TIMESTAMP DEFAULT CURRENT_TIMESTAMP |
+| vote_type   | VARCHAR(50) |
+| created_at  | TIMESTAMP   |
 | FOREIGN KEY (user_id) REFERENCES users (user_id) |
 | FOREIGN KEY (post_id) REFERENCES posts (post_id) |
 | FOREIGN KEY (comment_id) REFERENCES comments (comment_id) |
@@ -93,10 +93,10 @@ Codersquare utilizes a basic client/server architecture with a Spring Boot serve
 |--------------------|-------------|
 | token_id           | BIGSERIAL    |
 | confirmation_token | VARCHAR(255) |
-| created_at         | TIMESTAMP DEFAULT CURRENT_TIMESTAMP |
-| expired_at         | TIMESTAMP   |
-| confirmed_at       | TIMESTAMP   |
-| user_id            | BIGINT      |
+| created_at         | TIMESTAMP    |
+| expired_at         | TIMESTAMP    |
+| confirmed_at       | TIMESTAMP    |
+| user_id            | BIGINT       |
 | FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE |
 
 ## Server
