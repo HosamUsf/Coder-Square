@@ -16,4 +16,9 @@ public record DeleteEntityResponse(
                 "Failed to delete " + message,
                 message + " with " + type + " " + postId + " not found");
     }
+
+    public static DeleteEntityResponse error1(String message) {
+        return new DeleteEntityResponse("error", "FORBIDDEN", message );
+    }
+
 }

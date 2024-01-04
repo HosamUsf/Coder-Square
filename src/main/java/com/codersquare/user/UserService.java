@@ -9,9 +9,12 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 /**
@@ -25,7 +28,6 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final UserDTOMapper userDTOMapper;
-
 
 
     /**
@@ -56,11 +58,22 @@ public class UserService {
      * @param userName Username of the user to be deleted
      * @return ResponseEntity with the status and response body
      */
+    @Transactional
     public ResponseEntity<DeleteEntityResponse> deleteUser(String userName) {
         try {
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String username = authentication.getName();
+
             logger.info("Deleting user with username: {}", userName);
 
             checkIfUsernameExists(userName);
+
+            if (!userName.equals(username)) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(
+                        DeleteEntityResponse.error1("You are not allowed to delete this user")
+                );
+            }
 
             userRepository.deleteAllByUsername(userName);
 

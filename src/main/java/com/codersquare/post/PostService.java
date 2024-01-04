@@ -12,11 +12,14 @@ import com.codersquare.user.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Service;
 
 import java.net.MalformedURLException;
@@ -119,11 +122,21 @@ public class PostService {
      * @return ResponseEntity with the status and response body
      */
 
-    // TODO: When adding authentication, check whether the user is the owner of the post.
     @Transactional
     public ResponseEntity<DeleteEntityResponse> deletePost(Long postId) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
         try {
+
             checkIfPostExists(postId);
+            Post post = getPostById(postId);
+            if (!post.getUser().getUsername().equals(username)) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                        .body(DeleteEntityResponse.error1("You are not allowed to delete this post"));
+            }
+
             postRepository.deleteById(postId);
             return ResponseEntity.status(HttpStatus.OK).
                     body(DeleteEntityResponse.success("Post", "Id", postId.toString()));
@@ -172,6 +185,11 @@ public class PostService {
         if (!postRepository.existsByPostId(postId)) {
             throw new EntityNotFoundException("Post with Id " + postId + " Not Found ");
         }
+    }
+
+    private Post getPostById(long postId) throws EntityNotFoundException {
+        return postRepository.findById(postId).orElseThrow(() ->
+                new EntityNotFoundException("Post with Id " + postId + " Not Found "));
     }
 }
 

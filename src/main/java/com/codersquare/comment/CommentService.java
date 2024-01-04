@@ -13,6 +13,8 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -72,12 +74,20 @@ public class CommentService {
      * @param commentId Post ID to be deleted
      * @return ResponseEntity with the status and response body
      */
-
-    // TODO: When adding authentication, check whether the user is the owner of the comment.
     @Transactional
     public ResponseEntity<DeleteEntityResponse> deleteComment(Long commentId) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
         try {
             checkIfCommentExists(commentId);
+            Comment comment = commentRepository.findById(commentId).orElseThrow(() ->
+                    new EntityNotFoundException("Comment Not Found"));
+            if(!comment.getUser().getUsername().equals(username)){
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).
+                        body(DeleteEntityResponse.error1("You are not allowed to delete this Comment"));
+            }
             commentRepository.deleteById(commentId);
             return ResponseEntity.status(HttpStatus.OK).
                     body(DeleteEntityResponse.success("Comment", "Id", "" + commentId));
