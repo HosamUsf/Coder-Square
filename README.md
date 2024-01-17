@@ -1,5 +1,4 @@
 ---
-# Note this project still in progress
 # Codersquare 
 
 
