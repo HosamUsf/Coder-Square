@@ -1,8 +1,8 @@
 ---
-# Codersquare 
+# Coder square 
 
 
-Codersquare is a social web app designed to ignite your learning journey through a curated collection of resources, shared and voted on by your fellow developers. Think Hackernews meets learning platform, empowering you to discover new tools, frameworks, and tutorials, all within a vibrant community.
+Coder square is a social web app designed to ignite your learning journey through a curated collection of resources, shared and voted on by your fellow developers. Think Hackernews meets learning platform, empowering you to discover new tools, frameworks, and tutorials, all within a vibrant community.
 
 
 ![image](https://github.com/HosamUsf/Coder-Square/assets/57178026/e7972c48-d2c3-47cc-847f-4ae315190ae5)
