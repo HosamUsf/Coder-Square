@@ -7,6 +7,22 @@ Coder square is a social web app designed to ignite your learning journey throug
 
 ![image](https://github.com/HosamUsf/Coder-Square/assets/57178026/e7972c48-d2c3-47cc-847f-4ae315190ae5)
 
+## Table of Contents
+- [Intro](#Dive Into a World of Knowledge)
+- [Storage](#storage)
+  - [Schema](#schema)
+- [Server](#server)
+  - [Auth](#auth)
+  - [API](#api)
+- [Clients](#clients)
+- [Hosting](#hosting)
+- [Experience](#experience)
+  - [Post List](#post-list)
+  - [Tagging](#tagging)
+  - [Comments](#comments)
+  - [New Functionalities](#new-functionalities)
+- [Market](#market)
+
 
 ## Dive Into a World of Knowledge
 
