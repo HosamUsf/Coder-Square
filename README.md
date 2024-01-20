@@ -7,27 +7,28 @@ Codersquare is a social web app designed to ignite your learning journey through
 
 ![image](https://github.com/HosamUsf/Coder-Square/assets/57178026/e7972c48-d2c3-47cc-847f-4ae315190ae5)
 
-Dive Into a World of Knowledge:
+
+## Dive Into a World of Knowledge
 
 - Browse a curated feed: Explore a dynamic list of articles, videos, channels, and other web resources, constantly updated by fellow members.
 - Find your niche with tags: Filter resources by language, topic, or skill level to tailor your learning experience.
 - Up the ante with voting: Cast your vote on resources you find valuable, pushing the best content to the top and helping others navigate the information jungle.
 
-Engage with the Community:
+## Engage with the Community
 
 - Share your discoveries: Contribute valuable resources to the platform and share your insights with the community.
 - Spark conversations: Leave comments and engage in discussions, enriching your understanding and building connections with fellow learners.
 - Stay in the loop: A new notification system keeps you informed about relevant activity on your posts and comments, fostering a dynamic dialogue.
 
 
-Powerful Features, Seamless Experience:
+## Powerful Features, Seamless Experience:
 
 - User profiles: Track your contributions, customize your profile, and build your reputation within the community.
 - Search and sort: Find exactly what you're looking for with a powerful search function and various sorting options.
 - React.js powered: Built with modern web technologies, Codersquare delivers a smooth and responsive user experience.
 
 
-More Than Just Learning:
+## More Than Just Learning:
 
 Codersquare goes beyond a simple resource aggregator. It's a vibrant community of passionate developers where learning is collaborative, engaging, and always evolving.
 
