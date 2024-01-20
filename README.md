@@ -1,54 +1,33 @@
 ---
-# Coder square 
+# CoderSquare: Ignite Your Learning Journey
 
+CoderSquare is not just a platform; it's your passport to a vibrant community-driven learning experience. Imagine the best of Hackernews meeting a curated learning platform, designed to empower you with a world of knowledge. Here, developers share and vote on resources, creating a dynamic space to discover new tools, frameworks, and tutorials.
 
-Coder square is a social web app designed to ignite your learning journey through a curated collection of resources, shared and voted on by your fellow developers. Think Hackernews meets learning platform, empowering you to discover new tools, frameworks, and tutorials, all within a vibrant community.
-
-
-![image](https://github.com/HosamUsf/Coder-Square/assets/57178026/e7972c48-d2c3-47cc-847f-4ae315190ae5)
-
-## Table of Contents
-- [Intro](#Dive-Into-a-World-of-Knowledge)
-- [Storage](#storage)
-  - [Schema](#schema)
-- [Server](#server)
-  - [Auth](#auth)
-  - [API](#api)
-- [Clients](#clients)
-- [Hosting](#hosting)
-- [Experience](#experience)
-  - [Post List](#post-list)
-  - [Tagging](#tagging)
-  - [Comments](#comments)
-  - [New Functionalities](#new-functionalities)
-- [Market](#market)
-
+![CoderSquare](https://github.com/HosamUsf/Coder-Square/assets/57178026/e7972c48-d2c3-47cc-847f-4ae315190ae5)
 
 ## Dive Into a World of Knowledge
 
-- Browse a curated feed: Explore a dynamic list of articles, videos, channels, and other web resources, constantly updated by fellow members.
-- Find your niche with tags: Filter resources by language, topic, or skill level to tailor your learning experience.
-- Up the ante with voting: Cast your vote on resources you find valuable, pushing the best content to the top and helping others navigate the information jungle.
+- **Curated Feed:** Explore a dynamic list of articles, videos, channels, and other web resources, constantly updated by fellow members.
+- **Tag Filtering:** Find your niche by filtering resources based on language, topic, or skill level.
+- **Voting Power:** Cast your vote on valuable resources, pushing the best content to the top and aiding others in navigating the information jungle.
 
 ## Engage with the Community
 
-- Share your discoveries: Contribute valuable resources to the platform and share your insights with the community.
-- Spark conversations: Leave comments and engage in discussions, enriching your understanding and building connections with fellow learners.
-- Stay in the loop: A new notification system keeps you informed about relevant activity on your posts and comments, fostering a dynamic dialogue.
+- **Contribute:** Share your valuable discoveries with the community.
+- **Discussions:** Spark conversations, leave comments, and engage in discussions to enrich your understanding.
+- **Stay Informed:** The new notification system keeps you informed about relevant activities on your posts and comments.
 
+## Powerful Features, Seamless Experience
 
-## Powerful Features, Seamless Experience:
+- **User Profiles:** Track your contributions, customize your profile, and build your reputation within the community.
+- **Search and Sort:** Find exactly what you're looking for with a powerful search function and various sorting options.
+- **Modern Tech:** Built with React.js, Codersquare delivers a smooth and responsive user experience.
 
-- User profiles: Track your contributions, customize your profile, and build your reputation within the community.
-- Search and sort: Find exactly what you're looking for with a powerful search function and various sorting options.
-- React.js powered: Built with modern web technologies, Codersquare delivers a smooth and responsive user experience.
-
-
-## More Than Just Learning:
+## More Than Just Learning
 
 Codersquare goes beyond a simple resource aggregator. It's a vibrant community of passionate developers where learning is collaborative, engaging, and always evolving.
 
-Experience the future of learning. Come share, discover, and grow with Codersquare!
+**Experience the future of learning. Come share, discover, and grow with Codersquare!**
 
 ## Table of Contents
 
@@ -64,6 +43,7 @@ Experience the future of learning. Come share, discover, and grow with Codersqua
   - [Tagging](#tagging)
   - [Comments](#comments)
   - [New Functionalities](#new-functionalities)
+- [Notification System](#notification-system)
 - [Market](#market)
 
 ## Storage
