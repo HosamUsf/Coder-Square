@@ -14,5 +14,4 @@ public class CoderSquareApplication {
 
 
 /**
- * TODO : 1 - sorting by hotposts
 
