@@ -212,7 +212,4 @@ public class EmailGenerator {
                 </html>
                 """, name);
         }
-
-
 }
-
