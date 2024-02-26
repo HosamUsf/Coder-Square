@@ -27,16 +27,6 @@ public class PostController {
         return postService.findAll(page);
     }
 
-    /*public Page<Post> getAllSorted(@RequestParam(defaultValue = "" + 1, required = false) int page,
-                                   @RequestParam(defaultValue = "",required = false) String type) {
-        return switch (type != null ? type.toLowerCase() : "") {
-            case "recent" -> sortService.getPostsSortedByRecent(page);
-            case "popular" -> sortService.getPostsSortedByPopularity(page);
-            case "", "null" -> sortService.getHotPosts(page);
-            default -> throw new IllegalArgumentException("Invalid sorting type: " + type);
-        };
-    }*/
-
     @GetMapping("/posts/")
     public List<PostsDTO> getPostsByCategory(@RequestParam String category) {
         return postService.getPostsByCategory(category);
