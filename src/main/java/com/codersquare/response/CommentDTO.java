@@ -9,7 +9,5 @@ public record CommentDTO(
         String text,
         int points,
         LocalDateTime createdAt
-
-
 ) {
 }
