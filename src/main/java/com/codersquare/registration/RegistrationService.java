@@ -126,8 +126,4 @@ public class RegistrationService {
         return confirmationToken;
 
     }
-
-
-
-
 }
