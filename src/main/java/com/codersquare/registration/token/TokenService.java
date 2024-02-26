@@ -23,7 +23,4 @@ public class TokenService {
     public void setConfiramedAt(String token){
         tokenRepository.updateTokenByConfirmedAt(token, LocalDateTime.now());
     }
-
-
-
 }
