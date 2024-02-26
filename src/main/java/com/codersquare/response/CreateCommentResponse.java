@@ -26,5 +26,4 @@ public record CreateCommentResponse(
     public static CreateCommentResponse error(String message,ErrorData data) {
         return new CreateCommentResponse("error", message, null, data);
     }
-
 }
