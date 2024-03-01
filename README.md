@@ -185,13 +185,13 @@ The web client, implemented in React.js, serves as the primary interface. It use
 
 ## Hosting
 
-The code is hosted on Github. //TODO: deplpy the project to AWS.
+The code is hosted on GitHub. //TODO: deploy the project to AWS.
 
 ## Experience
 
 ### Post List
 
-The landing page presents a list of links with titles given by posters. Links are scored based on popularity and age, allowing users to browse and navigate. Signed-in users can add comments, upvote posts or comment,like posts for bookmark, and manage their own posts.
+The landing page presents a list of links with titles given by posters. Links are scored based on popularity and age, allowing users to browse and navigate. Signed-in users can add comments, upvote posts or comment,like posts for bookmarking, and manage their posts.
 
 ### Tagging
 
@@ -199,7 +199,7 @@ Posts can have tags describing different attributes, allowing users to filter th
 
 ### Comments
 
-Comments are sorted reverse-chronologically, and users can delete their own comments.
+Comments are sorted reverse-chronologically, and users can delete their comments.
 
 ### Notification System
 
