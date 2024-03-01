@@ -14,7 +14,7 @@ CoderSquare is not just a platform, it's your passport to a vibrant community-dr
 ## Engage with the Community
 
 - **Contribute:** Share your valuable discoveries with the community.
-- **Discussions:** Spark conversations, leave comments, and engage in discussions to enrich your understanding.
+- **Discussions:** Spark conversations, leave comments and engage in discussions to enrich your understanding.
 - **Stay Informed:** The new notification system keeps you informed about relevant activities on your posts and comments.
 
 ## Powerful Features, Seamless Experience
