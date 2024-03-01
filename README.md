@@ -191,7 +191,7 @@ The code is hosted on GitHub. //TODO: deploy the project to AWS.
 
 ### Post List
 
-The landing page presents a list of links with titles given by posters. Links are scored based on popularity and age, allowing users to browse and navigate. Signed-in users can add comments, upvote posts or comment,like posts for bookmarking, and manage their posts.
+The landing page presents a list of links with titles given by posters. Links are scored based on popularity and age, allowing users to browse and navigate. Signed-in users can add comments, upvote posts or comment, like posts for bookmarking, and manage their posts.
 
 ### Tagging
 
@@ -228,7 +228,7 @@ If you have any specific requirements or additional features for the notificatio
    - Users have profiles that can be customized. Retrieve user profile information via `/users/{username}`.
 
 4. **Voting:**
-   - Users can upvote or downvote posts and comments. The vote functionality is implemented using the `/api/v1/vote` endpoint. The details can be found in the request mapping for this endpoint.
+   - Users can upvote or downvote posts and comments. The voting functionality is implemented using the `/api/v1/vote` endpoint. The details can be found in the request mapping for this endpoint.
   
 
 5. **System Alerts:**
