@@ -1,7 +1,7 @@
 ---
 # CoderSquare: Ignite Your Learning Journey
 
-CoderSquare is not just a platform; it's your passport to a vibrant community-driven learning experience. Imagine the best of Hackernews meeting a curated learning platform, designed to empower you with a world of knowledge. Here, developers share and vote on resources, creating a dynamic space to discover new tools, frameworks, and tutorials.
+CoderSquare is not just a platform, it's your passport to a vibrant community-driven learning experience. Imagine the best of Hackernews meeting a curated learning platform, designed to empower you with a world of knowledge. Here, developers share and vote on resources, creating a dynamic space to discover new tools, frameworks, and tutorials.
 
 ![CoderSquare](https://github.com/HosamUsf/Coder-Square/assets/57178026/e7972c48-d2c3-47cc-847f-4ae315190ae5)
 
