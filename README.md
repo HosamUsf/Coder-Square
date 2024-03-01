@@ -141,14 +141,14 @@ A Spring Boot server is implemented to handle the backend functionalities. Authe
 /posts/new  [POST]
 /posts/:id  [GET]
 /posts/:id  [DELETE]
-/posts/sort/{criteria} [GET]    // Sort by Hot (Default), Recent or popularity (week, month, year, all time)
+/posts/sort/{criteria} [GET]    // Sort by Hot (Default), Recent, or popularity (week, month, year, all time)
 /posts/search/{query} [GET]    // Search resources based on a query
 
 ```
 
 **Likes:**
 ```
-/likes/new [POST] // like or unlike post using as bookmarks for users
+/likes/new [POST] // like or unlike post used as bookmarks for users
 ```
 
 **Comments:**
