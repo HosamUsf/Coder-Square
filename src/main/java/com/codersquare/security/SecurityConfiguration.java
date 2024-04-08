@@ -24,9 +24,8 @@ public class SecurityConfiguration {
                         .requestMatchers("api/v1/registration/confirm**").permitAll()
                         .requestMatchers("/error/**").permitAll()
                         .anyRequest().authenticated()
-                ).sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // no session
-                ).httpBasic(Customizer.withDefaults())
+                )// no session
+                
                 .formLogin(Customizer.withDefaults())
                 .build();
 
